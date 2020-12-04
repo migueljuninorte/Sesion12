@@ -1,0 +1,28 @@
+h1{
+    font-family: sans-serif;
+    color:#377ba8;
+    background-color:lightblue
+}
+form{
+    font-family: sans-serif;
+    /*text-align: center;
+    padding-left: 30%*/
+
+}
+#formulario {
+    margin: auto;
+    display: inline-block
+}
+input#centrar{
+    text-align: center;
+    min-width: 200px
+}
+body{
+    text-align:center;
+}
+main{
+    text-align: center;
+}
+table{
+    text-align: center;
+}

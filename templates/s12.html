@@ -1,0 +1,46 @@
+<html>
+    <head>
+    <title>Mensajería</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miEstilo.css') }}" />
+    <script src="{{ url_for('static', filename='js/s9.js') }}"></script>
+
+    </head>
+    <!--<body background="https://image.freepik.com/vector-gratis/servicio-mensajeria-linea-entrega-motocicletas_18591-65876.jpg"> -->
+    <body>
+        
+            <img src="https://image.freepik.com/vector-gratis/servicio-mensajeria-linea-entrega-motocicletas_18591-65876.jpg" width="20%" height="20%"/>
+            <br /><br />
+            <form style="margin: 0 auto;" id="formulario" action="" method="post" enctype="text/plain" onSubmit="return validar_formulario(event);">
+                <table>
+                    <tr>
+                        <td><label for="fname">Correo</label><br></td>
+                        <td><Input id="correo" name="Correo" Type="text" value="" size=20 maxlength=20 required pattern='[a-z0-9._%+-]+@[a-z0-9.-]\.[a-z]{2,4}$'></td>
+                        <!--<td><Input id="correo" name="Correo" Type="text" value="" size=20 maxlength=20 onfocusout="return validar_texto(event);"></td>
+                        <td><span id='correoError' style="color:red;"><span></td>-->
+                    </tr>
+                    <tr>
+                        <td><label for="fname">Usuario</label><br></td>
+                        <td><Input id="usuario" name="Usuario" Type="text" value="" size=20 maxlength=20 required></td>
+                        <td><span id='usuarioError' style="color:red;"><span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="fname">Contraseña</label><br></td>
+                        <td><Input id="Password" name="Password" Type="password" value="" size=20 maxlength=20 required></td>
+                        <!--<td><img src="img/show_pwd.PNG" style="padding-right: 90%;" width="10%" height="10%" heightonmouseover="mostrarPassword();" onmouseout="ocultarPassword();" /></td>-->
+                        <td><img src="{{ url_for('static', filename='img/show_pwd_small.png') }}" onmouseover="mostrarPassword();" onmouseout="ocultarPassword();" /></td>
+                        <td><span id='passwordError' style="color:red;"></span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <Input class="centrar" Type="submit" Name = "Enviar" value="Presione aquí para enviar">
+                        </td>
+                        <td>
+                            <Input class="centrar" Type="reset" Name="Nombre2" value="Presione aquí para resetear">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+    </body>
+</html>
