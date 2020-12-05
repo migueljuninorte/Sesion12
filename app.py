@@ -1,11 +1,57 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, request, redirect, url_for
+import yagmail as yagmail
+import utils
+import os
 
 app = Flask(__name__)
-
+app.secret_key = os.urandom(24)
 
 @app.route('/')
 def index():
-    return render_template('S12.html')
+    return render_template('s12.html')
+
+@app.route('/register',methods=('GET','POST'))
+def register():
+    try:
+        print(request.method)
+        if request.method == 'POST':
+            print('Post')
+            username = request.form['usuario']
+            print('usuario')
+            password = request.form['password']
+            email = request.form['email']
+            
+        else:
+            print('Get')
+            username = request.args.get('usuario')
+            password = request.args.get('password')
+            email = request.args.get('email')
+        
+        error = None
+
+        if not utils.isUsernameValid(username):
+            error = "El usuario debe ser alfanumérico o incluir . , _ -"            
+            flash(error)
+            return render_template("s12.html")
+        
+        if not utils.isUsernameValid(password):
+            error = "La contraseña debe contener al menos una minúscula, una mayúscula, un número y 8 caracteres"            
+            flash(error)
+            return render_template("s12.html")
+
+        if not utils.isEmailValid(email):
+            error = "Correo inválido"            
+            flash(error)
+            return render_template("s12.html")
+        
+        yag = yagmail.SMTP('misionticgrupo9@gmail.com','Holamundo1')
+        yag.send(to=email, subject='Activa tu cuenta', 
+                    contents='Bienvenido, usa este vínculo para activar tu cuenta ('+request.method+')')
+        flash('Revisa tu correo para activar tu cuenta')
+        return render_template('login.html')
+    except:
+        return render_template('s12.html')
+        #flash('Ocurrió un error al enviar el correo')
 
 if __name__ == '__main__':
     app.run()
