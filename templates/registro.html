@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Registro</title>
+    <head>
+    <body>
+        {%block contenido%}
+        <h1>{{titulo}}</h1>
+        <form action="{{url_for('register')}}" method="Post" validate>
+            {{form.hidden_tag()}}
+            <p>
+                {{form.usuario.label}}
+                {{form.usuario(size=30)}}
+            </p>
+            <p>
+                {{form.email.label}}
+                {{form.email(size=30)}}
+            </p>
+            <p>
+                {{form.password.label}}
+                {{form.password(size=30)}}
+            </p>
+            <p>
+                {{form.enviar()}}
+            </p>
+        </form>
+        {% endblock %}
+    </body>
+</html>

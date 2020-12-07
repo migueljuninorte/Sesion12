@@ -2,6 +2,7 @@ from flask import Flask, render_template, flash, request, redirect, url_for
 import yagmail as yagmail
 import utils
 import os
+from formulario import Registro
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -10,6 +11,11 @@ app.secret_key = os.urandom(24)
 def index():
     return render_template('s12.html')
 
+@app.route('/registro')
+def registro():
+    form=Registro()
+    return render_template('registro.html',titulo="Registrarse", form=form)
+
 @app.route('/register',methods=('GET','POST'))
 def register():
     try:
@@ -17,7 +23,6 @@ def register():
         if request.method == 'POST':
             print('Post')
             username = request.form['usuario']
-            print('usuario')
             password = request.form['password']
             email = request.form['email']
             
@@ -30,11 +35,11 @@ def register():
         error = None
 
         if not utils.isUsernameValid(username):
-            error = "El usuario debe ser alfanumérico o incluir . , _ -"            
+            error = "El usuario debe ser alfanumérico o incluir . , _ - y debe ser de al menos 8 carateres"            
             flash(error)
             return render_template("s12.html")
         
-        if not utils.isUsernameValid(password):
+        if not utils.isPasswordValid(password):
             error = "La contraseña debe contener al menos una minúscula, una mayúscula, un número y 8 caracteres"            
             flash(error)
             return render_template("s12.html")
