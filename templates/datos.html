@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>{{titulo}}</head>
+    <body>
+        <h1>{{titulo}}</h1>
+        <table id="datos" border=1></table>
+
+        <script>
+            var data = JSON.parse('{{ datosjson | safe }}');
+            var texto = "<tr><th>Usuario</th><th>Nombre</th><th>Correo</th></tr>";
+            for (d in data){
+                texto += "<tr><td>";
+                texto += data[d].usuario;
+                texto += "</td><td>";
+                texto += data[d].nombre;
+                texto += "</td><td>";
+                texto += data[d].correo;
+                texto += "</td></tr>";
+                console.log(d);
+                console.log(data[d]);
+            }
+            console.log(data);
+            document.getElementById('datos').innerHTML = texto;
+        </script>
+
+    </body>
+
+</html>
