@@ -46,7 +46,12 @@ def checklogin():
 def datos():
     print(listadatos)
     #return jsonify({'datos':listadatos})
-    return render_template('datos.html', titulo='datos', datosjson=json.dumps(listadatos))
+    return render_template('datos.html', titulo='Datos', datosjson=json.dumps(listadatos))
+
+@app.route('/datos/<string:nom_usuario>')
+def datos_bus(nom_usuario):
+    resultado = [usr for usr in listadatos if usr["usuario"]==nom_usuario]
+    return render_template('datos.html', titulo='Resultado', datosjson=json.dumps(resultado))
 
 @app.route('/registro')
 def registro():
